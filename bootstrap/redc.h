@@ -112,18 +112,19 @@ void redc_b_state_add_call(var funcname);
 void redc_b_state_advance();
 void redc_b_state_advance_false();
 
-
 /** REDC FRONTEND NAMESPACE */
 /** parse rules */
 
 #define FUNC_DECL_DEF 1024
 #define FUNC_CALL 1025
 
-int redc_f_operation();
-int redc_f_expression_atom();
-int redc_f_unary_expression_atom();
-int redc_f_expression(char prio);
-int redc_f_statement();
-int redc_f_statement_block();
-int redc_f_function(int type);
-int redc_f_program();
+int redc_f_decl();				/** parse declaration */
+int redc_f_operation();				/** parse operations */
+int redc_f_expression_atom();			/** parse single expression atom */
+int redc_f_unary_expression_atom();		/** parse unary ops */
+int redc_f_expression(char prio);		/** parse expression */
+int redc_f_statement();				/** parse statement */
+int redc_f_statement_block();			/** parse statement block */
+int redc_f_function(int type);			/** parse function */
+int redc_f_program();				/** parse prigram */
+
