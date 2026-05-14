@@ -83,3 +83,14 @@ void redc_b_state_advance() { global_state->tail = global_state->tail->iftrue; }
 void redc_b_state_advance_false() {
   global_state->tail = global_state->tail->iffalse;
 }
+
+void redc_b_state_add_definition(var funcname) {
+  statement *sp = new_statement(SFUNCDEF);
+  sp->lhs = funcname;
+  if (!global_state->tail) {
+    global_state->tail = sp;
+  } else {
+    global_state->tail->iftrue = sp;
+    global_state->tail->iftrue->iftrue_prev = global_state->tail->iftrue;
+  }
+}

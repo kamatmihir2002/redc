@@ -34,6 +34,12 @@ var redc_s_vvar() {
   return v;
 }
 
+var redc_s_vcallresult() {
+  var v;
+  v.type = VCALLRES;
+  return v;
+}
+
 void redc_s_var_push(var v) {
   varstack[top] = v;
   top++;

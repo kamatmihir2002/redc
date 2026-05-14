@@ -46,7 +46,7 @@ str *strdp(str *s);
 
 /** REDC STACK NAMESPACE */
 
-typedef enum vartype { VNONE = 0, VCONST, VVAR, VTEMP } vartype;
+typedef enum vartype { VNONE = 0, VCONST, VVAR, VTEMP, VCALLRES } vartype;
 
 typedef struct var {
   vartype type;
@@ -57,6 +57,7 @@ typedef struct var {
 var redc_s_vtemp();
 var redc_s_vconst();
 var redc_s_vvar();
+var redc_s_vcallresult();
 void redc_s_var_push(var v);
 var redc_s_var_pop();
 int redc_s_var_gettempvarnum();
@@ -109,6 +110,7 @@ void redc_b_state_add_load(var dest, var src);
 void redc_b_state_add_store(var dest, var src);
 void redc_b_state_add_params(var param);
 void redc_b_state_add_call(var funcname);
+void redc_b_state_add_definition(var funcname);
 void redc_b_state_advance();
 void redc_b_state_advance_false();
 
@@ -118,13 +120,12 @@ void redc_b_state_advance_false();
 #define FUNC_DECL_DEF 1024
 #define FUNC_CALL 1025
 
-int redc_f_decl();				/** parse declaration */
-int redc_f_operation();				/** parse operations */
-int redc_f_expression_atom();			/** parse single expression atom */
-int redc_f_unary_expression_atom();		/** parse unary ops */
-int redc_f_expression(char prio);		/** parse expression */
-int redc_f_statement();				/** parse statement */
-int redc_f_statement_block();			/** parse statement block */
-int redc_f_function(int type);			/** parse function */
-int redc_f_program();				/** parse prigram */
-
+int redc_f_decl();                  /** parse declaration */
+int redc_f_operation();             /** parse operations */
+int redc_f_expression_atom();       /** parse single expression atom */
+int redc_f_unary_expression_atom(); /** parse unary ops */
+int redc_f_expression(char prio);   /** parse expression */
+int redc_f_statement();             /** parse statement */
+int redc_f_statement_block();       /** parse statement block */
+int redc_f_function(int type);      /** parse function */
+int redc_f_program();               /** parse prigram */
