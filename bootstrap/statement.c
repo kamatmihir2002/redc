@@ -12,11 +12,14 @@ int redc_f_statement() {
   }
   if (kwpeek(if)) {
     next();
+
     if (!match('(')) {
       exit(1);
     }
+
     int cond = redc_f_expression(0);
-    if (!match('(')) {
+
+    if (!match(')')) {
       exit(1);
     }
 
