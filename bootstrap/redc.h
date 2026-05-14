@@ -26,6 +26,8 @@ int peektok(char **stream);
 #define next() tokenize(GS)
 #define peek(ch) (peektok(GS) == (ch))
 #define match(ch) (tokenize(GS) == (ch))
+#define kwpeek(ch) (peektok(GS) == kw_##ch)
+#define kwmatch(ch) (tokenize(GS) == kw_##ch)
 #define peek_nocheck(ch) (peektok(GS))
 
 /** strings */
