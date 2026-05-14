@@ -6,6 +6,9 @@ parse_state *global_state;
 
 statement *new_statement(int type) {
   statement *ss = malloc(sizeof(statement));
+  if (!ss)
+    exit(1);
+
   memset(ss, 0, sizeof(statement));
   ss->stype = type;
   return ss;
@@ -13,6 +16,10 @@ statement *new_statement(int type) {
 
 void redc_b_state_init() {
   global_state = malloc(sizeof(parse_state));
+
+  if (!global_state)
+    exit(1);
+
   memset(global_state, 0, sizeof(parse_state));
   global_state->all = new_statement(SNONE);
   global_state->tail = global_state->all;

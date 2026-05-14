@@ -6,6 +6,10 @@
 str strmake_static(char *s, int len) {
   str _s;
   _s.s = malloc(sizeof(char) * (len + 1));
+  
+  if (!_s.s)
+    exit(1);
+
   memcpy(_s.s, s, len);
   _s.s[len] = 0;
   _s.len = len;
@@ -15,7 +19,11 @@ str strmake_static(char *s, int len) {
 str *strmake(char *s, int len) {
   str *_s = malloc(sizeof(str));
   _s->s = malloc(sizeof(char) * (len + 1));
-  memcpy(_s->s, s, len);
+
+  if (!_s->s)
+    exit(1);
+
+   memcpy(_s->s, s, len);
   _s->s[len] = 0;
   _s->len = len;
   return _s;
