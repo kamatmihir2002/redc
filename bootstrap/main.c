@@ -11,8 +11,8 @@ int main(int argc, char **argv) {
   redc_f_expression(0);
   statement *s = global_state->all;
   while (s->iftrue) {
-    printf("%d %d\n", s->stype, s->op);
+    printf("%d %s %s %c %s ( %lld )\n", s->stype, s->lhs.name.s, s->rhs1.name.s, s->op, s->rhs2.name.s, s->rhs2.constval);
     s = s->iftrue;
   }
-  printf("%d %d\n", s->stype, s->op);
+  printf("%d %s %s %c %s ( %lld ) \n", s->stype, s->lhs.name.s, s->rhs1.name.s, s->op, s->rhs2.name.s, s->rhs2.constval);
 }

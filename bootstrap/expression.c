@@ -24,7 +24,7 @@ short binding_power(short op) {
 short do_op(short op, var *a, var *b) {
 
   for (int i = 0; i < 10; i++) {
-    if (op == ((short *)&ops)[i]) {
+    if (op == (short)ops[2 * i]) {
       switch (i) {
       case 0:
         a->constval = a->constval || b->constval;
@@ -164,7 +164,9 @@ int redc_f_expression(char prio) {
       do_op(op, &a, &b);
       redc_s_var_push(a);
     } else {
+
       /** load any var into registers and do the expression */
+
       var tb = b, ta = a;
       if (tb.type == VVAR) {
         tb = redc_s_vtemp();
