@@ -1,4 +1,4 @@
-#include <asm/unistd.h>
+.include "syscalls.S.pp"
 
 .text
 .equ AT_CWD, -100
@@ -26,7 +26,7 @@ abi_sysv_amd64_fopen:
     movq %rsi, -24(%rbp)
     movq %rdx, -32(%rbp)
     
-    movq $__NR_openat, %rax
+    movq $SYS_openat, %rax
     movq $AT_CWD, %rdi
     movq -24(%rbp), %rsi
     movq -32(%rbp), %rdx
@@ -64,7 +64,7 @@ abi_sysv_amd64_fclose:
     movq (%rdi), %rbx
     movq %rbx, -16(%rbp)
    
-    movq $__NR_close, %rax
+    movq $SYS_close, %rax
     movq -16(%rbp), %rdi
     syscall
 
@@ -99,7 +99,7 @@ abi_sysv_amd64_fread:
     movq (%rdx), %rdx
     movq %rdx, -32(%rbp) # fd
 
-    movq $__NR_read, %rax
+    movq $SYS_read, %rax
     movq -32(%rbp), %rdi
     movq -16(%rbp), %rsi
     movq -24(%rbp), %rdx

@@ -1,4 +1,4 @@
-#include <asm/unistd.h>
+.include "syscalls.S.pp"
 
 .text
 
@@ -25,7 +25,7 @@ abi_sysv_amd64_malloc:
     addq $8, %rdi
     movq %rdi, -16(%rbp)
 
-    movq $__NR_mmap, %rax #syscall num
+    movq $SYS_mmap, %rax #syscall num
     movq $0, %rdi
     movq -16(%rbp), %rsi
     movq $(PROT_READ + PROT_WRITE), %rdx
@@ -62,7 +62,7 @@ abi_sysv_amd64_free:
  
     # rdi = ptr given to user (actual ptr + 8)
  
-    movq $__NR_munmap, %rax
+    movq $SYS_munmap, %rax
     subq $8, %rdi
     movq (%rdi), %rsi
     syscall

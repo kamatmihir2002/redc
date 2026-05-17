@@ -1,8 +1,7 @@
-#include <asm/unistd.h>
-
+.include "syscalls.S.pp"
 .text
 .global abi_sysv_amd64_exit
 
 abi_sysv_amd64_exit:
-    movq $__NR_exit, %rax
+    movq $SYS_exit, %rax
     syscall  
